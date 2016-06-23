@@ -187,6 +187,19 @@ div#notebook {
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -211,6 +224,75 @@ div#notebook {
         <span class="c1">#Propagate inputs through network</span>
         <span class="k">pass</span>
     
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Activation-Function">Activation Function<a class="anchor-link" href="#Activation-Function">&#182;</a></h2><ul>
+<li>Defines the output of a node given inputs.</li>
+<li>In the biological sense, the activation function is a way to represent the rate of action potential firing in a call.</li>
+<li>In the most simple form, the activation function is binary (either the node/cell is firing or not).</li>
+<li>The activation function can be any type of function as long as the function:<ul>
+<li>is motonically increasing/decreasing</li>
+<li>is continuously differentiable (for backpropagation)</li>
+<li>is smooth; has a monotonic derivative</li>
+<li>is preferably not linear (for qucker and more stable convergence)</li>
+<li>has $f(x) \approx x$ when $x \approx 0$ characteristic (so that training is more efficient after the weights have been initialized w/ small random values)</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Sigmoid-Function">Sigmoid Function<a class="anchor-link" href="#Sigmoid-Function">&#182;</a></h3><p>Sigmoid function is any mathematical function having an "S" shape. These "S" shapes functions meet the aforementioned requirements.</p>
+<h4 id="Logistic-Function">Logistic Function<a class="anchor-link" href="#Logistic-Function">&#182;</a></h4><p>Most popular sigmoid function. The function was named when studying population growth--the initial stage of growth is approx exponential and then, as saturation begins, the growth slows and, at maturity (at/near $+\infty$), growth stops.</p>
+<p>Function given by:
+\begin{align}
+f(x) = \dfrac{L}{1+e^{-k(x-x_0)}}
+\end{align}
+Where $L$ is the curve's maximum value, $x_0$ is the curve's midpoint in the x-axis and $k$ is the curve's steepness.</p>
+<p>For our purposes, we want the the maximum value to be 1. We also want the midpoint to be 0, so that way, if the input is positive, then the output will tend to 1 and, if the input is negative, the output will tend to 0. The steepness $k$ of the function helps with how quickly and well the network converges.</p>
+<p>Therefore, our function becomes:
+\begin{align}
+f(x) = \dfrac{1}{1+e^{-k(x)}}
+\end{align}</p>
+<p>The logistic function's derivative is:
+\begin{align}
+f'(x) = \dfrac{ke^{-kx}}{1+e^{-k(x)}}
+\end{align}</p>
+<p>Or written differently:
+\begin{align}
+f'(x) = \dfrac{1}{1+e^{-k(x)}}(1 - \dfrac{1}{1+e^{-k(x)}})
+\end{align}
+or:
+\begin{align}
+f'(x) = f(x)(1 - f(x))
+\end{align}</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">logistic</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="p">)</span>
 </pre></div>
 
 </div>
