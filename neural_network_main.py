@@ -1,6 +1,11 @@
 
 # coding: utf-8
 
+# In[4]:
+
+import numpy as np
+
+
 # # Neural Network Practice
 # ** objectives: **
 # 1. Create my own neural network implementation
@@ -8,11 +13,6 @@
 # 1. Use clean code (esp dependency ejection) practices
 # 
 # \* Using Welch Lab's Youtube video series: Neural Networks Demystified as reference
-
-# In[ ]:
-
-
-
 
 # ## Neural Network Implementation
 # ### Multilayer Perceptron
@@ -75,8 +75,13 @@ class Neural_Network():
 # f'(x) = f(x)(1 - f(x))
 # \end{align}
 
-# In[ ]:
+# In[5]:
 
 def logistic(z, k=1.0):
-    return 1/(1 + np)
+    return 1/(1 + np.exp(-k*z))
+
+
+# In[ ]:
+
+
 
